@@ -1,0 +1,8 @@
+.out, .in{
+    display: none;
+    width: 100px;
+    height: 30px;
+    background-color: aqua;
+    text-align: center;
+    padding-top: 15px;
+}
