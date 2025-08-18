@@ -10,6 +10,7 @@
 .container,
 .wrapper {
   width: 100px;
+  margin: 5px 0px;
 }
 
 .my-card {
@@ -20,16 +21,28 @@
   padding-top: 15px;
 }
 
-.wrapper{
-    margin-top: 5px;
-}
-.in1{
-    display: block;
+.in1 {
+  display: block;
 }
 
-.wrapper.is-flipped .in {
-    display: none;
+.wrapper.is-flipped .in{
+  display: none;
 }
 .wrapper.is-flipped .out {
-    display: block;
+  display: block;
+}
+
+.container.visible .in {
+  display: none;
+}
+.container.visible .out {
+  display: block;
+}
+
+.container.visible.is-flipped .in {
+  display: block;
+}
+
+.container.visible.is-flipped .out {
+  display: none;
 }

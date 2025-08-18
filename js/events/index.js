@@ -9,10 +9,18 @@ const qwe = document.getElementById("qwe");
 let flipped = false;
 
 document.getElementById("btn").onclick = async () => {
-  front.style.display = "none";
   if (input.value.trim() === "") {
     return;
   }
+  let cards = JSON.parse(localStorage.getItem("cards")) || [];
+
+  for (let i = 0; i < cards.length; i++) {
+    if (input.value == cards[i].f) {
+      alert("Такое Слово уже добавлено");
+      return;
+    }
+  }
+  
   const frontValue = input.value;
   input.value = "";
   let a = encodeURIComponent(frontValue);
@@ -20,9 +28,13 @@ document.getElementById("btn").onclick = async () => {
   const res = await fetch(url);
   const data = await res.json();
   const backValue = data.responseData.translatedText;
+
   back.textContent = backValue;
-  back.style.display = "block";
   front.textContent = frontValue;
+
+  container.classList.add("visible");
+  container.classList.remove("is-flipped");
+
   addCard(frontValue, backValue);
 };
 
@@ -37,9 +49,8 @@ clear.onclick = () => {
 };
 
 container.addEventListener("click", () => {
-  flipped = !flipped;
-  front.style.display = flipped ? "block" : "none";
-  back.style.display = flipped ? "none" : "block";
+  container.classList.toggle("is-flipped");
+
 });
 
 document.addEventListener("click", (e) => {
