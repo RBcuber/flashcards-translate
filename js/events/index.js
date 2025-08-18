@@ -9,6 +9,7 @@ const qwe = document.getElementById("qwe");
 let flipped = false;
 
 document.getElementById("btn").onclick = async () => {
+  front.style.display = "none";
   if (input.value.trim() === "") {
     return;
   }
