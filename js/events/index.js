@@ -4,6 +4,8 @@ const container = document.getElementById("container");
 const clear = document.getElementById("clear");
 const input = document.getElementById("input");
 const show = document.getElementById("show");
+const qwe = document.getElementById("qwe");
+
 let flipped = false;
 
 document.getElementById("btn").onclick = async () => {
@@ -11,7 +13,7 @@ document.getElementById("btn").onclick = async () => {
     return;
   }
   const frontValue = input.value;
-  input.value = '';
+  input.value = "";
   let a = encodeURIComponent(frontValue);
   const url = `https://api.mymemory.translated.net/get?q=${a}&langpair=ru%7Cen`;
   const res = await fetch(url);
@@ -23,7 +25,7 @@ document.getElementById("btn").onclick = async () => {
   addCard(frontValue, backValue);
 };
 
-function addCard(f, b) { 
+function addCard(f, b) {
   let cards = JSON.parse(localStorage.getItem("cards")) || [];
   cards.push({ f, b });
   localStorage.setItem("cards", JSON.stringify(cards));
@@ -39,10 +41,20 @@ container.addEventListener("click", () => {
   back.style.display = flipped ? "none" : "block";
 });
 
+document.addEventListener("click", (e) => {
+  const wrapper = e.target.closest(".wrapper");
+  if (!wrapper) return;
+  wrapper.classList.toggle("is-flipped");
+});
+
 show.addEventListener("click", () => {
-  document.getElementById("qwe").textContent = JSON.stringify(
-    JSON.parse(localStorage.getItem("cards")),
-    null,
-    2
-  );
+  let cards = JSON.parse(localStorage.getItem("cards")) || [];
+  qwe.innerHTML = "";
+  for (let i = 0; i < cards.length; i++) {
+    qwe.innerHTML += `
+    <div id="wrapper" class="wrapper">
+      <div id="in1" class="in in1">${cards[i].f}</div>
+      <div id="out1" class="out">${cards[i].b}</div>
+    </div>`;
+  }
 });

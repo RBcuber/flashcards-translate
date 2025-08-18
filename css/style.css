@@ -7,6 +7,29 @@
   text-align: center;
   padding-top: 15px;
 }
-.container {
+.container,
+.wrapper {
   width: 100px;
+}
+
+.my-card {
+  width: 200px;
+  height: 30px;
+  background-color: aqua;
+  text-align: center;
+  padding-top: 15px;
+}
+
+.wrapper{
+    margin-top: 5px;
+}
+.in1{
+    display: block;
+}
+
+.wrapper.is-flipped .in {
+    display: none;
+}
+.wrapper.is-flipped .out {
+    display: block;
 }
