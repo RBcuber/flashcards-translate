@@ -7,7 +7,11 @@ const show = document.getElementById("show");
 let flipped = false;
 
 document.getElementById("btn").onclick = async () => {
+  if (input.value.trim() === "") {
+    return;
+  }
   const frontValue = input.value;
+  input.value = '';
   let a = encodeURIComponent(frontValue);
   const url = `https://api.mymemory.translated.net/get?q=${a}&langpair=ru%7Cen`;
   const res = await fetch(url);
@@ -19,7 +23,7 @@ document.getElementById("btn").onclick = async () => {
   addCard(frontValue, backValue);
 };
 
-function addCard(f, b) {
+function addCard(f, b) { 
   let cards = JSON.parse(localStorage.getItem("cards")) || [];
   cards.push({ f, b });
   localStorage.setItem("cards", JSON.stringify(cards));
