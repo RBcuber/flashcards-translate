@@ -9,8 +9,21 @@
 </head>
 
 <body>
-	<input id="input" type="text" placeholder="Введите слово">
-	<button id="btn">Добавить</button>
+	<div class="create_deck">
+		<input class="input1" id="input1" type="text" placeholder="Введите слово">
+		<button class="btn1" id="btn1">Добавить</button>
+	</div>
+	<div class="create_cards">
+		<input id="input" type="text" placeholder="Введите слово">
+		<label for="deckSelect">Выбери колоду:</label>
+		<select id="deckSelect">
+			
+			
+		</select>
+		<button id="btn">Добавить</button>
+	</div>
+
+
 	<div class="container" id="container">
 		<div class="out" id="out"></div>
 		<div class="in" id="in"></div>
@@ -21,10 +34,10 @@
 	<button id="clear">Очистить карточки</button>
 
 	<button id="show">Показать все слова</button>
-	<div class="qwe" id="qwe">
-		
+	<div class="list" id="list">
+
 	</div>
-	<script type="module" src="./js/events/index.js"></script>
+	<script type="module" src="./js/app.js"></script>
 
 </body>
 

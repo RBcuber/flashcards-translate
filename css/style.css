@@ -7,10 +7,19 @@
   text-align: center;
   padding-top: 15px;
 }
-.container,
-.wrapper {
+.container {
   width: 100px;
   margin: 5px 0px;
+}
+
+
+.list {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 220px;
+  gap: 10px;
 }
 
 .my-card {
@@ -20,29 +29,24 @@
   text-align: center;
   padding-top: 15px;
 }
-
-.in1 {
+.wrapper.in{
+  width: 100px;
+}
+.container.visible .in,
+.wrapper.visible .in {
   display: block;
 }
-
-.wrapper.is-flipped .in{
+.container.visible .out,
+.wrapper.visible .out {
   display: none;
 }
-.wrapper.is-flipped .out {
-  display: block;
-}
 
-.container.visible .in {
+.container.visible.is-flipped .in,
+.wrapper.visible.is-flipped .in {
   display: none;
 }
-.container.visible .out {
-  display: block;
-}
 
-.container.visible.is-flipped .in {
+.container.visible.is-flipped .out,
+.wrapper.visible.is-flipped .out {
   display: block;
-}
-
-.container.visible.is-flipped .out {
-  display: none;
 }
