@@ -1,34 +1,57 @@
-const DECK_LIST_KEY = "deck";
-const deckKey = (title) => `deck:${title}`;
+const DECKS_KEY = "decks";
 
 export function getDecks() {
-  return JSON.parse(localStorage.getItem(DECK_LIST_KEY)) || [];
+  return JSON.parse(localStorage.getItem(DECKS_KEY)) || [];
+}
+
+function saveDecks(decks) {
+  localStorage.setItem(DECKS_KEY, JSON.stringify(decks));
 }
 
 export function addDeck(title) {
   const decks = getDecks();
-  if (decks.some((d) => d.deckTitle === title)) return false;
-  decks.push({ deckTitle: title });
-  localStorage.setItem(DECK_LIST_KEY, JSON.stringify(decks));
+  decks.push({ title, cards: [] });
+  saveDecks(decks);
+}
+
+export function checkDeck(title) {
+  const decks = getDecks();
+  if (decks.some((d) => d.title === title)) return false;
   return true;
 }
 
 export function getCards(title) {
-  return JSON.parse(localStorage.getItem(deckKey(title))) || [];
+  const decks = getDecks();
+  return decks.find(d => d.title === title)?.cards || [];
 }
 
 export function addCard(title, card) {
-  const cards = getCards(title);
-  cards.push(card);
-  localStorage.setItem(deckKey(title), JSON.stringify(cards));
+  const decks = getDecks();
+  const deck = decks.find(d => d.title === title);
+  if (!deck) return;
+  deck.cards.push(card);
+  saveDecks(decks);
 }
 
 export function clearAll() {
-  localStorage.clear();
+  localStorage.removeItem(DECKS_KEY);
 }
 export function removeWord(title, word) {
-  let cards = getCards(title);
-  cards = cards.filter((c) => c.f !== word);
-  localStorage.setItem(deckKey(title), JSON.stringify(cards));
+  const decks = getDecks();
+  if (!decks[title]) return;
 
+  decks[title].cards = decks[title].cards.filter((c) => c.f !== word);
+  saveDecks(decks);
+}
+
+
+export function removeDeckLocal(title) {
+  const decks = getDecks();
+  const updatedDecks = decks.filter((c) => c.title !== title);
+  saveDecks(updatedDecks);
+}
+
+export function changeCard(title) {
+  const decks = getDecks();
+  return decks.find(d => d.title === title);
 }

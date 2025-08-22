@@ -1,3 +1,9 @@
+[contenteditable][data-placeholder]:empty:before {
+  content: attr(data-placeholder);
+  color: #aaa;
+  pointer-events: none;
+}
+
 .out,
 .in {
   display: none;
@@ -7,11 +13,10 @@
   text-align: center;
   padding-top: 15px;
 }
-.container {
+.container-cards {
   width: 100px;
   margin: 5px 0px;
 }
-
 
 .list {
   margin-top: 20px;
@@ -29,24 +34,231 @@
   text-align: center;
   padding-top: 15px;
 }
-.wrapper.in{
+.wrapper.in {
   width: 100px;
 }
-.container.visible .in,
+.container-cards.visible .in,
 .wrapper.visible .in {
   display: block;
 }
-.container.visible .out,
+.container-cards.visible .out,
 .wrapper.visible .out {
   display: none;
 }
 
-.container.visible.is-flipped .in,
+.container-cards.visible.is-flipped .in,
 .wrapper.visible.is-flipped .in {
   display: none;
 }
 
-.container.visible.is-flipped .out,
+.container-cards.visible.is-flipped .out,
 .wrapper.visible.is-flipped .out {
   display: block;
+}
+
+body {
+  background-color: #f6f7fb;
+}
+
+header {
+  background-color: #d2e6f7;
+  height: 60px;
+  margin-bottom: 50px;
+}
+
+ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+  height: 100%;
+}
+
+ul li:hover {
+  cursor: pointer;
+  color: rgb(91, 91, 255);
+}
+.container {
+  width: 600px;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  height: 90vh;
+}
+.deckName,
+.cardName,
+.cardTranslate {
+  box-sizing: content-box;
+  position: relative;
+
+  background-color: #fff;
+  height: 40px;
+
+  margin-bottom: 20px;
+  border-radius: 10px;
+  padding-left: 20px;
+  padding-top: 20px;
+}
+.cardName,
+.cardTranslate {
+  background-color: #f6f7fb;
+}
+
+.create_cards {
+  padding: 0 10px;
+  background-color: #fff;
+  width: 100%;
+  height: 240px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+.create_cards__header {
+  display: flex;
+  justify-content: space-between;
+
+  padding: 20px;
+}
+
+.button,
+.button-card,
+.btnСhangeCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 120px;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  background-color: #f3f5f8;
+  cursor: pointer;
+}
+
+.button:hover,
+.button-card:hover,
+.btnСhangeCard:hover {
+  background-color: #edeff4;
+}
+.button-card {
+  width: 150px;
+}
+.btnСhangeCard {
+  width: 300px;
+  margin: 0 auto;
+  margin-top: 40px;
+}
+.container__button-card {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.container__button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.delete-card-container,
+.delete-deck-container {
+  border-radius: 50px;
+  border: 1px solid #ecdbdb;
+}
+
+.delete-card img,
+.delete-deck img {
+  cursor: pointer;
+  width: 30px;
+}
+
+.delete-card-container:hover,
+.delete-deck-container:hover {
+  background-color: #f3f5f8;
+}
+
+.decks-title {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.create-decks {
+  display: grid;
+  grid-template-columns: 250px 300px 30px; /* название - счетчик - крестик */
+  align-items: center;
+  background-color: #ffffff;
+  margin-bottom: 16px;
+  padding: 20px;
+}
+
+.errorWord,
+.errorTranslate,
+.errorDeck {
+  display: none;
+  margin-top: -20px;
+  color: #ff0000ff;
+}
+
+.errorWord.visible,
+.errorTranslate.visible,
+.errorDeck.visible {
+  display: block;
+}
+
+.a {
+  color: #000;
+}
+
+.card {
+  position: relative;
+  width: 400px;
+  height: 250px;
+  flex: 0 0 auto;
+}
+
+.card .card-in,
+.card .card-out {
+  transition: opacity 0.5s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.card .card-in {
+  background: #fff;
+}
+.card .card-out {
+  background: #f0f0f0;
+}
+
+.card .card-in {
+  opacity: 1;
+}
+
+.card .card-out {
+  opacity: 0;
+}
+
+.card.flipped .card-in {
+  opacity: 0;
+}
+
+.card.flipped .card-out {
+  opacity: 1;
+}
+
+@media only screen and (max-width: 600px) {
+  .container {
+    width: 100%;
+  }
+  .create-decks {
+    grid-template-columns: 150px auto 30px;
+  }
 }
