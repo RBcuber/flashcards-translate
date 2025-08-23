@@ -8,6 +8,7 @@ import {
   removeWord,
   removeDeckLocal,
   changeCard,
+  deleteCardAll,
 } from "./storage.js";
 import { translateRuToEn } from "./translator.js";
 import {
@@ -57,13 +58,15 @@ function init() {
     if (!title) {
       renderNewCard(els.cards);
       renderNewCard(els.cards);
+      els.btnAddDeck?.addEventListener("click", onAddDeck);
     } else {
       loadDeckForEdit(title);
+      els.btnAddDeck.innerText = "Сохранить изменения"
+      els.btnAddDeck?.addEventListener("click", onChangeDeck);
     }
   }
 
   // события
-  els.btnAddDeck?.addEventListener("click", onAddDeck);
   els.btnAddWord?.addEventListener("click", onAddWord);
   els.btnShow?.addEventListener("click", onShowAll);
   els.btnClear?.addEventListener("click", onClearAll);
@@ -134,6 +137,15 @@ function onAddDeck() {
   alert("Колода создана");
   // renderDeckSelect(els.deckSelect, getDecks(), title);
 }
+function onChangeDeck() {
+  const title = (els.inputDeck.innerText || "").trim();
+  if (!checkCard()) {
+    return;
+  }
+  deleteCardAll(title);
+  addCardAll(title);
+  alert("Колода изменена");
+}
 
 function addCardAll(title) {
   document.querySelectorAll(".create_cards").forEach((card) => {
@@ -147,7 +159,7 @@ function addCardAll(title) {
 }
 function checkCard(title) {
   let isValid = true;
-    document.querySelectorAll(".create_cards").forEach((card) => {
+  document.querySelectorAll(".create_cards").forEach((card) => {
     const word = card.querySelector(".cardName");
     const translated = card.querySelector(".cardTranslate");
     const errorWord = card.querySelector(".errorWord");
@@ -271,9 +283,10 @@ function onСhangeCard() {
 
 function loadDeckForEdit(title) {
   const deck = changeCard(title);
-  console.log(els.inputDeck);
-  document.querySelector("#deckName").innerText = deck.title || "";
-
+  const editable = document.querySelector("#deckName");
+  editable.innerText = deck.title || "";
+  editable.setAttribute("contenteditable", "false");
+  editable.classList.add("color")
   // создаём карточки
   if (deck.cards.length === 0) {
     renderNewCard(els.cards);

@@ -88,7 +88,10 @@ main {
   justify-content: center;
   height: 90vh;
 }
-.deckName,
+.deckName.color{
+  background-color: #d1d1d1b0;
+}
+.deckName,  
 .cardName,
 .cardTranslate {
   box-sizing: content-box;

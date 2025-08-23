@@ -22,12 +22,12 @@ export function checkDeck(title) {
 
 export function getCards(title) {
   const decks = getDecks();
-  return decks.find(d => d.title === title)?.cards || [];
+  return decks.find((d) => d.title === title)?.cards || [];
 }
 
 export function addCard(title, card) {
   const decks = getDecks();
-  const deck = decks.find(d => d.title === title);
+  const deck = decks.find((d) => d.title === title);
   if (!deck) return;
   deck.cards.push(card);
   saveDecks(decks);
@@ -44,7 +44,6 @@ export function removeWord(title, word) {
   saveDecks(decks);
 }
 
-
 export function removeDeckLocal(title) {
   const decks = getDecks();
   const updatedDecks = decks.filter((c) => c.title !== title);
@@ -53,5 +52,11 @@ export function removeDeckLocal(title) {
 
 export function changeCard(title) {
   const decks = getDecks();
-  return decks.find(d => d.title === title);
+  return decks.find((d) => d.title === title);
+}
+export function deleteCardAll(title) {
+  const decks = getDecks();
+  const deck = decks.find(d => d.title === title);
+  deck.cards = [];
+  saveDecks(decks);
 }
