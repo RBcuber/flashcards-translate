@@ -247,7 +247,7 @@ function defoltCard() {
   document.querySelectorAll(".create_cards").forEach((card, index) => {
     const word = card.querySelector(".cardName");
     const translated = card.querySelector(".cardTranslate");
-    if (index < 2) {
+    if (index < 1) {
       word.innerText = "";
       translated.innerText = "";
     } else {
