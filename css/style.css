@@ -65,7 +65,12 @@ header {
   height: 60px;
   margin-bottom: 50px;
 }
-
+.container-el {
+  background-color: #d2e6f7;
+  padding: 20px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
 ul {
   display: flex;
   justify-content: center;
@@ -88,10 +93,10 @@ main {
   justify-content: center;
   height: 90vh;
 }
-.deckName.color{
+.deckName.color {
   background-color: #d1d1d1b0;
 }
-.deckName,  
+.deckName,
 .cardName,
 .cardTranslate {
   box-sizing: content-box;
@@ -126,7 +131,6 @@ main {
 }
 
 .button,
-.button-card,
 .btnСhangeCard {
   display: flex;
   align-items: center;
@@ -134,20 +138,33 @@ main {
 
   width: 120px;
   padding: 10px 20px;
-  border: 1px solid #ccc;
+  border: 2px solid #b2cef8;
   border-radius: 15px;
   background-color: #f3f5f8;
   cursor: pointer;
 }
-
+.button-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 45px;
+  background-color: #f3f5f8;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 800;
+  color: #1605ad;
+}
+.button{
+  width: fit-content;
+}
 .button:hover,
 .button-card:hover,
 .btnСhangeCard:hover {
   background-color: #edeff4;
 }
-.button-card {
-  width: 150px;
-}
+
 .btnСhangeCard {
   width: 300px;
   margin: 0 auto;
@@ -155,7 +172,7 @@ main {
 }
 .container__button-card {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   margin-bottom: 20px;
 }
 .container__button {
