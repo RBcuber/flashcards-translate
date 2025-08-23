@@ -6,6 +6,7 @@
   overflow: hidden;
   border-radius: 12px;
   box-shadow: inset 0 0 5px rgb(#D2E6F7);
+  cursor: pointer;
 }
 .slider.noCard {
   height: auto;
