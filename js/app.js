@@ -57,7 +57,6 @@ function init() {
   if (page === "" || page === "index.html") {
     if (!title) {
       renderNewCard(els.cards);
-      renderNewCard(els.cards);
       els.btnAddDeck?.addEventListener("click", onAddDeck);
     } else {
       loadDeckForEdit(title);
@@ -290,12 +289,10 @@ function loadDeckForEdit(title) {
   // создаём карточки
   if (deck.cards.length === 0) {
     renderNewCard(els.cards);
-    renderNewCard(els.cards);
   } else if (deck.cards.length === 1) {
     deck.cards.forEach((card) => {
       renderNewCard(els.cards, card.f, card.b);
     });
-    renderNewCard(els.cards);
   } else {
     deck.cards.forEach((card) => {
       renderNewCard(els.cards, card.f, card.b);
