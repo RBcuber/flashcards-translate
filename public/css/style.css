@@ -87,7 +87,9 @@ ul li:hover {
 .container {
   width: 600px;
 }
-
+.container-c {
+  width: 700px;
+}
 main {
   display: flex;
   justify-content: center;
@@ -204,7 +206,7 @@ main {
 
 .create-decks {
   display: grid;
-  grid-template-columns: 250px 300px 30px; /* название - счетчик - крестик */
+  grid-template-columns: 300px 340px 30px; /* название - счетчик - крестик */
   align-items: center;
   background-color: #ffffff;
   margin-bottom: 16px;
@@ -274,11 +276,14 @@ main {
   opacity: 1;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
   .container {
     width: 100%;
   }
   .create-decks {
-    grid-template-columns: 150px auto 30px;
+    grid-template-columns: 200px auto 30px;
+    font-size: 12px;
+
   }
+  
 }

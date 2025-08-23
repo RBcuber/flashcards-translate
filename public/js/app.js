@@ -77,6 +77,8 @@ function init() {
   document.addEventListener("click", flippedCard);
 
   document.addEventListener("input", translateCart);
+  document.addEventListener("beforeinput", maxElement);
+
 
   document.addEventListener("click", (e) => {
     if (e.target.classList.contains("btnRemoveWord")) {
@@ -225,7 +227,6 @@ async function translateCart(e) {
     const card = e.target.closest(".create_cards");
     const translatedDiv = card.querySelector(".cardTranslate");
     const word = (e.target.innerText || "").trim();
-
     if (!word) {
       translatedDiv.innerText = "";
       return;
@@ -297,5 +298,13 @@ function loadDeckForEdit(title) {
     deck.cards.forEach((card) => {
       renderNewCard(els.cards, card.f, card.b);
     });
+  }
+}
+function maxElement(e) {
+  const max = 20;
+  if (e.target.classList.contains("cardName") || e.target.classList.contains("deckName")) {
+    if (e.target.innerText.length >= max && e.inputType !== "deleteContentBackward") { 
+      e.preventDefault(); // отменяем ввод нового текста
+    }
   }
 }
