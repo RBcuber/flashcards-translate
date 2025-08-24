@@ -75,8 +75,7 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
-
+  padding-left: 0;
   height: 100%;
 }
 
@@ -133,6 +132,7 @@ main {
 }
 
 .button,
+.button_create_new_crad,
 .btnСhangeCard {
   display: flex;
   align-items: center;
@@ -144,6 +144,10 @@ main {
   border-radius: 15px;
   background-color: #f3f5f8;
   cursor: pointer;
+}
+.button_create_new_crad {
+  width: fit-content;
+  margin: 0 auto;
 }
 .button-card {
   display: flex;
@@ -158,7 +162,7 @@ main {
   font-weight: 800;
   color: #1605ad;
 }
-.button{
+.button {
   width: fit-content;
 }
 .button:hover,
@@ -283,7 +287,5 @@ main {
   .create-decks {
     grid-template-columns: 200px auto 30px;
     font-size: 12px;
-
   }
-  
 }

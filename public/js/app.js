@@ -54,7 +54,7 @@ function init() {
   const page = path.split("/").pop(); // имя файла, например "create.html"
   const params = new URLSearchParams(window.location.search);
   const title = params.get("title"); // если есть
-  if (page === "" || page === "index.html") {
+  if (page === "create.html") {
     if (!title) {
       renderNewCard(els.cards);
       els.btnAddDeck?.addEventListener("click", onAddDeck);
@@ -277,7 +277,7 @@ function flippedCard(e) {
 function onСhangeCard() {
   const params = new URLSearchParams(window.location.search);
   const title = params.get("title");
-  window.location.href = `index.html?title=${encodeURIComponent(title)}`;
+  window.location.href = `create.html?title=${encodeURIComponent(title)}`;
 }
 // localStorage.clear();
 
