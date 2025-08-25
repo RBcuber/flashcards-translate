@@ -1,5 +1,6 @@
 import { getDecks } from "./storage.js";
 
+
 window.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(window.location.search);
   const title = params.get("title");
@@ -10,45 +11,59 @@ window.addEventListener("DOMContentLoaded", () => {
   const slides = document.querySelector(".slides");
   const slider = document.querySelector(".slider");
 
+  if (renderCards(deck, slides, slider)) {
+    initSlider(slides);
+  }
+ 
+  });
+
+function renderCards(deck, slides, slider) {
   if (!deck) {
     slides.innerHTML = "<p>Колода не найдена</p>";
-    return;
+    return false;
   }
   if (deck.cards.length === 0) {
     slider.innerHTML = "<p>Слов в колоде ещё нет</p>";
     slider.classList.add("noCard");
+    return false;
   }
 
   deck.cards.forEach((card) => {
     slides.innerHTML += `
       <div class="card">
-        <p class="card-in">${card.f}</p>
-        <p class="card-out">${card.b}</p>
+        <div class="card-inner">
+          <div class="card-in">${card.f}</div>
+          <div class="card-out">${card.b}</div>
+        </div>
       </div>
     `;
   });
 
-  // теперь выбираем карточки после рендера
-  if (document.querySelector(".prev")) {
-    const cards = document.querySelectorAll(".card");
-    const prev = document.querySelector(".prev");
-    const next = document.querySelector(".next");
+  return true;
+}
+function initSlider(slides) {
+  const cards = document.querySelectorAll(".card");
+  const prev = document.querySelector(".prev");
+  const next = document.querySelector(".next");
 
-    let index = 0;
+  if (!cards.length || !prev || !next) return;
 
-    function showSlide(i) {
-      const slideWidth = cards[0].clientWidth; // ширина карточки
-      if (i < 0) index = cards.length - 1;
-      else if (i >= cards.length) index = 0;
-      else index = i;
-      slides.style.transform = `translateX(${-index * slideWidth}px)`;
+  let index = 0;
 
-      document.querySelectorAll(".card.flipped").forEach((card) => {
-        card.classList.remove("flipped");
-      });
-    }
+  function showSlide(i) {
+    const slideWidth = cards[0].clientWidth;
+    if (i < 0) index = cards.length - 1;
+    else if (i >= cards.length) index = 0;
+    else index = i;
 
-    prev.addEventListener("click", () => showSlide(index - 1));
-    next.addEventListener("click", () => showSlide(index + 1));
+    slides.style.transform = `translateX(${-index * slideWidth}px)`;
+
+    // сброс переворотов
+    document.querySelectorAll(".card.flipped").forEach((card) => {
+      card.classList.remove("flipped");
+    });
   }
-});
+
+  prev.addEventListener("click", () => showSlide(index - 1));
+  next.addEventListener("click", () => showSlide(index + 1));
+}

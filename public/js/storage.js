@@ -4,7 +4,7 @@ export function getDecks() {
   return JSON.parse(localStorage.getItem(DECKS_KEY)) || [];
 }
 
-function saveDecks(decks) {
+export function saveDecks(decks) {
   localStorage.setItem(DECKS_KEY, JSON.stringify(decks));
 }
 
@@ -20,10 +20,6 @@ export function checkDeck(title) {
   return true;
 }
 
-export function getCards(title) {
-  const decks = getDecks();
-  return decks.find((d) => d.title === title)?.cards || [];
-}
 
 export function addCard(title, card) {
   const decks = getDecks();
@@ -33,30 +29,20 @@ export function addCard(title, card) {
   saveDecks(decks);
 }
 
-export function clearAll() {
-  localStorage.removeItem(DECKS_KEY);
-}
-export function removeWord(title, word) {
-  const decks = getDecks();
-  if (!decks[title]) return;
-
-  decks[title].cards = decks[title].cards.filter((c) => c.f !== word);
-  saveDecks(decks);
-}
-
 export function removeDeckLocal(title) {
   const decks = getDecks();
   const updatedDecks = decks.filter((c) => c.title !== title);
   saveDecks(updatedDecks);
 }
 
-export function changeCard(title) {
+export function getDeckByTitle(title) {
   const decks = getDecks();
   return decks.find((d) => d.title === title);
 }
 export function deleteCardAll(title) {
   const decks = getDecks();
   const deck = decks.find(d => d.title === title);
+  if (!deck) return;
   deck.cards = [];
   saveDecks(decks);
 }
