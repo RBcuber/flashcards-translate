@@ -1,10 +1,9 @@
-
-
 export function maxElement(e) {
-  const max = 20;
+  const max = +e.target.dataset.max;
   if (
-    e.target.classList.contains("cardName") ||
-    e.target.classList.contains("deckName")
+    e.target.classList.contains("card__word") ||
+    e.target.classList.contains("deck__name") ||
+    e.target.classList.contains("card__translation")
   ) {
     if (
       e.target.innerText.length >= max &&
@@ -15,16 +14,15 @@ export function maxElement(e) {
   }
 }
 export function updateCharCount(e) {
-  if (e.target.classList.contains("deckName")) {
-    const max = 20;
-    const deck = e.target.closest(".create_deck");
+  const max = +e.target.dataset.max;
+  if (e.target.classList.contains("deck__name")) {
+    const deck = e.target.closest(".deck");
     const counter = deck.querySelector(".deck__max_length");
     updateCount(e.target, counter, max);
   }
-  if (e.target.classList.contains("cardName")) {
-    const max = 20;
-    const deck = e.target.closest(".inputCards");
-    const counter = deck.querySelector(".card__max_length");
+  if (e.target.classList.contains("card__word") || e.target.classList.contains("card__translation")) {
+    const deck = e.target.closest(".card__field");
+    const counter = deck.querySelector(".card__counter");
     updateCount(e.target, counter, max);
   }
 }

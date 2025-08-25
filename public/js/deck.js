@@ -1,6 +1,5 @@
 import { getDecks } from "./storage.js";
 
-
 window.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(window.location.search);
   const title = params.get("title");
@@ -8,14 +7,13 @@ window.addEventListener("DOMContentLoaded", () => {
   const decks = getDecks();
   const deck = decks.find((d) => d.title === title);
 
-  const slides = document.querySelector(".slides");
+  const slides = document.querySelector(".slider__slides");
   const slider = document.querySelector(".slider");
 
   if (renderCards(deck, slides, slider)) {
     initSlider(slides);
   }
- 
-  });
+});
 
 function renderCards(deck, slides, slider) {
   if (!deck) {
@@ -30,10 +28,10 @@ function renderCards(deck, slides, slider) {
 
   deck.cards.forEach((card) => {
     slides.innerHTML += `
-      <div class="card">
-        <div class="card-inner">
-          <div class="card-in">${card.f}</div>
-          <div class="card-out">${card.b}</div>
+      <div class="flashcard">
+        <div class="flashcard__inner">
+          <div class="flashcard__side flashcard__side--front">${card.f}</div>
+          <div class="flashcard__side flashcard__side--back">${card.b}</div>
         </div>
       </div>
     `;
@@ -42,9 +40,9 @@ function renderCards(deck, slides, slider) {
   return true;
 }
 function initSlider(slides) {
-  const cards = document.querySelectorAll(".card");
-  const prev = document.querySelector(".prev");
-  const next = document.querySelector(".next");
+  const cards = document.querySelectorAll(".flashcard");
+  const prev = document.querySelector(".slider__btn--prev");
+  const next = document.querySelector(".slider__btn--next");
 
   if (!cards.length || !prev || !next) return;
 
@@ -59,7 +57,7 @@ function initSlider(slides) {
     slides.style.transform = `translateX(${-index * slideWidth}px)`;
 
     // сброс переворотов
-    document.querySelectorAll(".card.flipped").forEach((card) => {
+    document.querySelectorAll(".flashcard.flipped").forEach((card) => {
       card.classList.remove("flipped");
     });
   }

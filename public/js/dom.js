@@ -1,7 +1,7 @@
 export const $ = (sel) => document.querySelector(sel);
 export const $$ = (sel) => document.querySelectorAll(sel);
 
-// функция склонения слова 
+// функция склонения слова
 function pluralizeCards(n) {
   if (n % 10 === 1 && n % 100 !== 11) {
     return `${n} карточка`;
@@ -19,28 +19,29 @@ export function renderDeck(selectEl, decks) {
     .map(
       (d) =>
         `
-    <a href="deck.html?title=${encodeURIComponent(d.title)}" class="a">
-      <div class="create-decks">
-				<div class="deck-name">
-					${d.title}
-				</div>
-				<div class="amount-cards">
-					${pluralizeCards(d.cards.length)}
-				</div>
-				<div class="delete-deck delete-deck-container"><img class="delete-deck" src="./img/cross.png" alt="удалить"></div>
-			</div>
-    </a>
+        <a href="deck.html?title=${encodeURIComponent(
+          d.title
+        )}" class="decks__link">
+          <div class="decks__item">
+				    <div class="decks__title">
+				      ${d.title}
+				    </div>
+				    <div class="decks__count">
+				  	  ${pluralizeCards(d.cards.length)}
+				    </div>
+				    <div class="decks__delete"><img class="decks__delete-icon" src="./img/cross.png" alt="удалить"></div>
+			    </div>
+        </a>
   `
     )
     .join("");
 }
 
-
 // функция для пересчёта номеров
 export function renumberCards() {
-  const cards = document.querySelectorAll(".create_cards");
+  const cards = document.querySelectorAll(".card");
   cards.forEach((card, index) => {
-    const num = card.querySelector(".create_cards__header p");
+    const num = card.querySelector(".card__header p");
     num.innerText = index + 1;
   });
 }
@@ -48,19 +49,20 @@ export function renumberCards() {
 // Добавление новой карточки
 export function renderNewCard(cards, f = "", b = "") {
   cards.innerHTML += `
-    <div class="create_cards">
-      <div class="create_cards__header">
-       <p></p>
-       <div class="delete-card delete-card-container"><img class="delete-card" src="./img/cross.png" alt="удалить"></div>
+    <div class="card">
+      <div class="card__header">
+       <p class="card__number"></p>
+       <div class="card__delete"><img class="card__delete-icon" src="./img/cross.png" alt="удалить"></div>
       </div>
-      <div class= "inputCards relative"> 
-        <div class="cardName" contenteditable="true" data-placeholder="Введите слово">${f}</div>
-        <div id="errorWord" class="errorWord">Пожалуйста, введите слово</div>
-        <p class="card__max_length max_length"></p>
+      <div class= "card__field card__field--word relative"> 
+        <div class="card__word" data-max="30" contenteditable="true" data-placeholder="Введите слово">${f}</div>
+        <div class="card__error">Пожалуйста, введите слово</div>
+        <p class="card__counter counter"></p>
       </div>
-      <div class= "inputCardsTranslate relative"> 
-        <div class= "cardTranslate" contenteditable="true"data-placeholder="Перевод слова">${b}</div>
-        <div id="errorTranslate" class="errorTranslate">Пожалуйста, введите перевод слова</div>
+      <div class= "card__field card__field--translation relative"> 
+        <div class= "card__translation" data-max="30" contenteditable="true"data-placeholder="Перевод слова">${b}</div>
+        <div class="card__error--translation">Пожалуйста, введите перевод слова</div>
+        <p class="card__counter counter"></p>
       </div>
 
 

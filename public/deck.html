@@ -11,22 +11,24 @@
 </head>
 
 <body>
-	<header>
-		<ul>
-            <li><a href="./">Ваши колоды</a></li>
-		</ul>
+	<header class="header">
+		<nav class="header__nav">
+			<ul class="header__list">
+				<li class="header__item"><a href="./" class="header__link">Ваши колоды</a></li>
+			</ul>
+		</nav>
 	</header>
 
-	<main>
-		<div class="container">
+	<main class="deck-page">
+		<div class="deck-page__container">
 			<div class="slider">
-				<div class="slides">
+				<div class="slider__slides">
 
 				</div>
-				<button class="btn prev">❮</button>
-				<button class="btn next">❯</button>
+				<button class="slider__btn slider__btn--prev">❮</button>
+				<button class="slider__btn slider__btn--next">❯</button>
 			</div>
-			<div class="btnСhangeCard">Добавить или удалить карточки</div>
+			<div class="deck-page__edit-btn">Добавить или удалить карточки</div>
 
 		</div>
 	</main>

@@ -4,58 +4,6 @@
   pointer-events: none;
 }
 
-.out,
-.in {
-  display: none;
-  width: 100px;
-  height: 30px;
-  background-color: aqua;
-  text-align: center;
-  padding-top: 15px;
-}
-.container-cards {
-  width: 100px;
-  margin: 5px 0px;
-}
-
-.list {
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  width: 220px;
-  gap: 10px;
-}
-
-.my-card {
-  width: 200px;
-  height: 30px;
-  background-color: aqua;
-  text-align: center;
-  padding-top: 15px;
-}
-.wrapper.in {
-  width: 100px;
-}
-.container-cards.visible .in,
-.wrapper.visible .in {
-  display: block;
-}
-.container-cards.visible .out,
-.wrapper.visible .out {
-  display: none;
-}
-
-.container-cards.visible.is-flipped .in,
-.wrapper.visible.is-flipped .in {
-  display: none;
-}
-
-.container-cards.visible.is-flipped .out,
-.wrapper.visible.is-flipped .out {
-  display: block;
-}
-
 body {
   background-color: #f6f7fb;
 }
@@ -65,28 +13,36 @@ header {
   height: 60px;
   margin-bottom: 50px;
 }
-.container-el {
+.header__nav {
+  height: 60px;
+}
+.container__inner {
   background-color: #d2e6f7;
   padding: 20px;
   border-radius: 20px;
   margin-bottom: 20px;
 }
-ul {
+.header__link {
+  color: #000;
+}
+.header__list {
   display: flex;
   justify-content: center;
   align-items: center;
   padding-left: 0;
   height: 100%;
 }
-
+ul li {
+  color: #000;
+}
 ul li:hover {
   cursor: pointer;
-  color: rgb(91, 91, 255);
+  color: rgb(46, 46, 240);
 }
 .container {
   width: 600px;
 }
-.container-c {
+.page__container {
   width: 700px;
 }
 main {
@@ -94,12 +50,12 @@ main {
   justify-content: center;
   height: 90vh;
 }
-.deckName.color {
+.deck__name.color {
   background-color: #d1d1d1b0;
 }
-.deckName,
-.cardName,
-.cardTranslate {
+.deck__name,
+.card__word,
+.card__translation {
   box-sizing: content-box;
   position: relative;
 
@@ -111,12 +67,12 @@ main {
   padding-left: 20px;
   padding-top: 20px;
 }
-.cardName,
-.cardTranslate {
+.card__word,
+.card__translation {
   background-color: #f6f7fb;
 }
 
-.create_cards {
+.card {
   padding: 0 10px;
   background-color: #fff;
   width: 100%;
@@ -124,16 +80,15 @@ main {
   border-radius: 15px;
   margin-bottom: 20px;
 }
-.create_cards__header {
+.card__header {
   display: flex;
   justify-content: space-between;
-
   padding: 20px;
 }
 
-.button,
-.button_create_new_crad,
-.btnСhangeCard {
+.deck__create-button,
+.button.button--create,
+.deck-page__edit-btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -145,11 +100,11 @@ main {
   background-color: #f3f5f8;
   cursor: pointer;
 }
-.button_create_new_crad {
+.button.button--create {
   width: fit-content;
   margin: 0 auto;
 }
-.button-card {
+.deck__add-card-button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -162,126 +117,78 @@ main {
   font-weight: 800;
   color: #1605ad;
 }
-.button {
+.deck__create-button {
   width: fit-content;
 }
-.button:hover,
-.button-card:hover,
-.btnСhangeCard:hover {
+.deck__create-button:hover,
+.deck__add-card-button:hover,
+.deck-page__edit-btn:hover {
   background-color: #edeff4;
 }
 
-.btnСhangeCard {
+.deck-page__edit-btn {
   width: 300px;
   margin: 0 auto;
   margin-top: 40px;
 }
-.container__button-card {
+.deck__controls {
   display: flex;
   justify-content: space-around;
   margin-bottom: 20px;
 }
-.container__button {
+.container__actions {
   display: flex;
   justify-content: flex-end;
 }
 
-.delete-card-container,
-.delete-deck-container {
+.card__delete,
+.decks__delete {
   border-radius: 50px;
   border: 1px solid #ecdbdb;
 }
 
-.delete-card img,
-.delete-deck img {
+.card__delete img,
+.decks__delete img {
   cursor: pointer;
   width: 30px;
 }
 
-.delete-card-container:hover,
-.delete-deck-container:hover {
+.card__delete:hover,
+.decks__delete:hover {
   background-color: #f3f5f8;
 }
 
-.decks-title {
+.page__title {
   text-align: center;
   margin-bottom: 80px;
 }
 
-.create-decks {
+.decks__item {
   display: grid;
-  grid-template-columns: 300px 340px 30px; /* название - счетчик - крестик */
+  grid-template-columns: 300px 340px 30px; 
   align-items: center;
   background-color: #ffffff;
   margin-bottom: 16px;
   padding: 20px;
 }
-.relative{
+.relative {
   position: relative;
 }
-.errorWord,
-.errorTranslate,
-.errorDeck {
+.card__error,
+.card__error--translation,
+.deck__error {
   display: none;
   margin-top: -20px;
   color: #ff0000ff;
 }
 
-.errorWord.visible,
-.errorTranslate.visible,
-.errorDeck.visible {
+.card__error.visible,
+.card__error--translation.visible,
+.deck__error.visible {
   display: block;
 }
 
-.a {
-  color: #000;
-}
-
-.card {
-  position: relative;
-  width: 400px;
-  height: 250px;
-  flex: 0 0 auto;
-}
-
-.card .card-in,
-.card .card-out {
-  transition: opacity 0.5s ease;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-}
-
-.card .card-in {
-  background: #fff;
-}
-.card .card-out {
-  background: #f0f0f0;
-}
-
-.card .card-in {
-  opacity: 1;
-}
-
-.card .card-out {
-  opacity: 0;
-}
-
-.card.flipped .card-in {
-  opacity: 0;
-}
-
-.card.flipped .card-out {
-  opacity: 1;
-}
-.max_length{
+.counter {
   position: absolute;
   top: 0;
   right: 0;
@@ -291,7 +198,7 @@ main {
   .container {
     width: 100%;
   }
-  .create-decks {
+  .decks__item {
     grid-template-columns: 200px auto 30px;
     font-size: 12px;
   }

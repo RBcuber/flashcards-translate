@@ -1,20 +1,20 @@
 import { $, $$ } from "./dom.js";
 
 export const els = {
-  inputWord: $(".cardName"),
-  btnAddWord: $("#btn"),
+  inputWord: $(".card__word"),
+  btnAddWord: $("#slider__btn"),
   inputDeck: $("#deckName"),
-  btnAddDeck: $(".button"),
+  btnAddDeck: $(".deck__create-button"),
   deckSelect: $(".decks"),
   preview: $("#container-cards"),
   btnClear: $("#clear"),
   btnShow: $("#show"),
   list: $("#list"),
   btnRemoveWord: $$(".btnRemoveWord"),
-  cardNameAll: $$(".create_cards"),
-  buttonCard: $(".button-card"),
+  cardNameAll: $$(".card"),
+  buttonCard: $(".deck__add-card-button"),
   cards: $(".cards"),
-  cardTranslate: $(".cardTranslate"),
-  errorDeck: $(".errorDeck"),
-  btnСhangeCard: $(".btnСhangeCard"),
+  cardTranslate: $(".card__translation"),
+  errorDeck: $(".deck__error"),
+  btnСhangeCard: $(".deck-page__edit-btn"),
 };

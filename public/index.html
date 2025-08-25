@@ -10,22 +10,24 @@
 </head>
 
 <body>
-    <header>
-        <ul>
-            <li><a href="./">Ваши колоды</a></li>
-        </ul>
+    <header class="header">
+        <nav class="header__nav">
+            <ul class="header__list">
+                <li class="header__item"><a href="./" class="header__link">Ваши колоды</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <main>
-        <div class="container-c">
-            <h1 class="decks-title"> Ваши Колоды</h1>
+    <main class="page">
+        <div class="page__container">
+            <h1 class="page__title"> Ваши Колоды</h1>
             <div class="decks"></div>
-            <div class="container__button_create">
-                <a href="./create.html">
-                    <div class="button_create_new_crad">Создать новую колоду</div>
+            <div class="page__actions">
+                <a href="./create.html" class="button button--create">
+                    Создать новую колоду
                 </a>
             </div>
-        </div>
+        </div>  
     </main>
 
 

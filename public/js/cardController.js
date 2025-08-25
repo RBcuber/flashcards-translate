@@ -1,19 +1,17 @@
-import {renderNewCard, renumberCards} from "./dom.js";
+import { renderNewCard, renumberCards } from "./dom.js";
 import { els } from "./els.js";
-
-
 
 export function onAddCart() {
   renderNewCard(els.cards);
 }
 export function removeCard(e) {
-  if (e.target.classList.contains("delete-card")) {
-    e.target.closest(".create_cards").remove();
+  if (e.target.classList.contains("card__delete-icon")) {
+    e.target.closest(".card").remove();
     renumberCards();
   }
 }
 export function flippedCard(e) {
-  const card = e.target.closest(".card"); // ищем карточку
+  const card = e.target.closest(".flashcard");
   if (card) {
     card.classList.toggle("flipped");
   }

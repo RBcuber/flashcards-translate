@@ -7,9 +7,8 @@ import {
   getDeckByTitle,
   deleteCardAll,
 } from "./storage.js";
-import {renderNewCard , renderDeck } from "./dom.js";
+import { renderNewCard, renderDeck } from "./dom.js";
 import { els } from "./els.js";
-
 
 export function onAddDeck() {
   const title = (els.inputDeck.innerText || "").trim();
@@ -31,13 +30,13 @@ export function onAddDeck() {
   els.inputDeck.innerText = "";
   defoltCard();
   alert("Колода создана");
+  window.location.href = "index.html";
 }
 
-
 function addCardAll(title) {
-  document.querySelectorAll(".create_cards").forEach((card) => {
-    const word = card.querySelector(".cardName");
-    const translated = card.querySelector(".cardTranslate");
+  document.querySelectorAll(".card").forEach((card) => {
+    const word = card.querySelector(".card__word");
+    const translated = card.querySelector(".card__translation");
     const wordText = word.innerText;
     const translatedText = translated.innerText;
 
@@ -45,9 +44,9 @@ function addCardAll(title) {
   });
 }
 function defoltCard() {
-  document.querySelectorAll(".create_cards").forEach((card, index) => {
-    const word = card.querySelector(".cardName");
-    const translated = card.querySelector(".cardTranslate");
+  document.querySelectorAll(".card").forEach((card, index) => {
+    const word = card.querySelector(".card__word");
+    const translated = card.querySelector(".card__translation");
     if (index < 1) {
       word.innerText = "";
       translated.innerText = "";
@@ -69,20 +68,20 @@ export function onChangeDeck() {
 
 function checkCard(title) {
   let isValid = true;
-  document.querySelectorAll(".create_cards").forEach((card) => {
-    const word = card.querySelector(".cardName");
-    const translated = card.querySelector(".cardTranslate");
-    const errorWord = card.querySelector(".errorWord");
-    const errorTranslate = card.querySelector(".errorTranslate");
+  document.querySelectorAll(".card").forEach((card) => {
+    const word = card.querySelector(".card__word");
+    const translated = card.querySelector(".card__translation");
+    const card__error = card.querySelector(".card__error");
+    const errorTranslate = card.querySelector(".card__error--translation");
     if (word.innerText.trim() === "" && translated.innerText.trim() === "") {
-      errorWord.classList.add("visible");
+      card__error.classList.add("visible");
       errorTranslate.classList.add("visible");
       isValid = false;
       return;
     }
 
     if (word.innerText.trim() === "") {
-      errorWord.classList.add("visible");
+      card__error.classList.add("visible");
       isValid = false;
       return;
     }
@@ -92,18 +91,20 @@ function checkCard(title) {
       isValid = false;
       return;
     }
-    errorWord.classList.remove("visible");
+    card__error.classList.remove("visible");
     errorTranslate.classList.remove("visible");
   });
   return isValid;
 }
 
 export function removeDeck(e) {
-  if (e.target.classList.contains("delete-deck")) {
+  if (e.target.classList.contains("decks__delete-icon")) {
     e.preventDefault();
     e.stopPropagation();
-    const deck = e.target.closest(".create-decks");
-    const title = deck.querySelector(".deck-name").innerText;
+    const result = confirm("Вы точно хотите удалить колоду?");
+    if(!result) return;
+    const deck = e.target.closest(".decks__item");
+    const title = deck.querySelector(".decks__title").innerText;
     removeDeckLocal(title);
     renderDeck(els.deckSelect, getDecks());
   }
@@ -115,7 +116,6 @@ export function loadDeckForEdit(title) {
   editable.innerText = deck.title || "";
   editable.setAttribute("contenteditable", "false");
   editable.classList.add("color");
-  // создаём карточки
   if (deck.cards.length === 0) {
     renderNewCard(els.cards);
   } else if (deck.cards.length === 1) {

@@ -1,14 +1,20 @@
+import { getDecks } from "./storage.js";
+import { renderNewCard, renderDeck } from "./dom.js";
 import {
-  getDecks
-} from "./storage.js";
-import {renderNewCard,renderDeck } from "./dom.js";
-import { onAddDeck, onChangeDeck, removeDeck, loadDeckForEdit } from "./deckController.js";
-import { onAddCart, removeCard, flippedCard, onСhangeCard } from "./cardController.js";
+  onAddDeck,
+  onChangeDeck,
+  removeDeck,
+  loadDeckForEdit,
+} from "./deckController.js";
+import {
+  onAddCart,
+  removeCard,
+  flippedCard,
+  onСhangeCard,
+} from "./cardController.js";
 import { translateCart } from "./translateController.js";
 import { maxElement, updateCharCount } from "./validators.js";
 import { els } from "./els.js";
-
-
 
 function init() {
   if (els.deckSelect) {
@@ -50,10 +56,4 @@ function init() {
   });
 }
 
-
 init();
-
-
-
-
-

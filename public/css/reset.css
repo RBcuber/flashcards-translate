@@ -51,6 +51,7 @@ a:not([class]) {
 }
 a {
 	text-decoration: none;
+  color: #000;
 /* Make images easier to work with */
 }
 img,

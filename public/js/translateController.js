@@ -1,10 +1,9 @@
 import { translateRuToEn } from "./translator.js";
 
-
 export async function translateCart(e) {
-  if (e.target.classList.contains("cardName")) {
-    const card = e.target.closest(".create_cards");
-    const translatedDiv = card.querySelector(".cardTranslate");
+  if (e.target.classList.contains("card__word")) {
+    const card = e.target.closest(".card");
+    const translatedDiv = card.querySelector(".card__translation");
     const word = (e.target.innerText || "").trim();
     if (!word) {
       translatedDiv.innerText = "";
